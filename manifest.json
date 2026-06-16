@@ -1,0 +1,27 @@
+{
+  "name": "2048 ULTRA",
+  "short_name": "2048",
+  "description": "2048 Ultra — Desliza, fusiona y domina. Experiencia gaming premium con música electrónica dark-red.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0005",
+  "theme_color": "#ff1744",
+  "orientation": "portrait-primary",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "lang": "es"
+}
