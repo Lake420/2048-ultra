@@ -21,7 +21,7 @@
   --ac:#ff1744;--acdim:rgba(255,23,68,0.15);--ac2:#ff6090;
   --glow:rgba(255,23,68,.6);
   --neon-r:0 0 8px rgba(255,23,68,.8),0 0 20px rgba(255,23,68,.4),0 0 40px rgba(255,23,68,.2);
-  --ms:120ms;--ease:cubic-bezier(.25,.1,.25,1);
+  --ms:80ms;--ease:cubic-bezier(.25,.1,.25,1);
 }
 [data-theme="blue"]:root,[data-theme="blue"] {
   --bg:#00080f;--sf:#000e18;--bd:#001220;--cl:#00182c;
@@ -115,6 +115,9 @@ body::after{
 
 /* ── POWER-UPS ───────────────────────────────────────────── */
 .powerup-row{display:flex;gap:5px;margin-bottom:7px;align-items:center}
+.powerup-row.hidden{display:none}
+/* ── MODE ULTRA BUTTON ──────────────────────────────────── */
+.btn-ultra-on{border-color:rgba(255,180,0,.6);color:#ffcc00;background:rgba(255,160,0,.12)}
 .pu-lbl{font-size:7px;color:var(--mt);letter-spacing:.15em;font-family:'Orbitron',sans-serif;font-weight:700;white-space:nowrap}
 .pu-slots{display:flex;gap:4px;flex:1}
 .pu-btn{
@@ -206,19 +209,19 @@ button:disabled{opacity:.2;cursor:default}
 @keyframes t-in{from{transform:scale(.15) rotate(-10deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
 @keyframes t-pop{0%{transform:scale(1)}30%{transform:scale(1.28)}75%{transform:scale(.96)}100%{transform:scale(1)}}
 
-/* Tile colors (dark-red) — work great with all themes */
-.ti[dv="2"]   {background:linear-gradient(135deg,#1a0008,#280012);color:#ff6080;border-color:rgba(255,40,80,.15)}
-.ti[dv="4"]   {background:linear-gradient(135deg,#200009,#2e0014);color:#ff3060;border-color:rgba(255,30,70,.2);box-shadow:0 0 8px rgba(255,30,70,.15)}
-.ti[dv="8"]   {background:linear-gradient(135deg,#280004,#380008);color:#ff1744;border-color:rgba(255,20,60,.3);box-shadow:0 0 12px rgba(255,20,60,.2)}
-.ti[dv="16"]  {background:linear-gradient(135deg,#2e0005,#420008);color:#ff0033;border-color:rgba(255,0,50,.35);box-shadow:0 0 15px rgba(255,0,50,.3)}
-.ti[dv="32"]  {background:linear-gradient(135deg,#320007,#480010);color:#ff2052;border-color:rgba(255,30,80,.4);box-shadow:0 0 18px rgba(255,30,80,.35)}
-.ti[dv="64"]  {background:linear-gradient(135deg,#3a0008,#550012);color:#ff4060;border-color:rgba(255,60,90,.4);box-shadow:0 0 20px rgba(255,60,90,.4)}
-.ti[dv="128"] {background:linear-gradient(135deg,#3c0010,#5a0018);color:#ff6080;border-color:rgba(255,90,120,.45);box-shadow:0 0 22px rgba(255,90,120,.5),0 0 40px rgba(255,23,68,.2)}
-.ti[dv="256"] {background:linear-gradient(135deg,#3e0015,#5c0022);color:#ff80a0;border-color:rgba(255,120,150,.5);box-shadow:0 0 25px rgba(255,120,150,.6),0 0 50px rgba(255,23,68,.3)}
-.ti[dv="512"] {background:linear-gradient(135deg,#400018,#620026);color:#ffaacc;border-color:rgba(255,160,190,.55);box-shadow:0 0 28px rgba(255,160,190,.65),0 0 55px rgba(255,23,68,.35)}
-.ti[dv="1024"]{background:linear-gradient(135deg,#450020,#6a002e);color:#ffd0e0;border-color:rgba(255,200,220,.6);box-shadow:0 0 32px rgba(255,200,220,.7),0 0 60px rgba(255,23,68,.5)}
-.ti[dv="2048"]{background:linear-gradient(135deg,#520028,#820040);color:#fff0f5;border-color:rgba(255,240,248,.7);animation:tile-win 1.5s ease-in-out infinite;box-shadow:0 0 35px rgba(255,23,68,1),0 0 70px rgba(255,23,68,.7)}
-.ti[dv="big"] {background:linear-gradient(135deg,#600030,#940048);color:#fff;border-color:rgba(255,255,255,.6);box-shadow:0 0 40px rgba(255,80,140,1),0 0 80px rgba(255,23,68,.8)}
+/* Tile colors — brighter contrast for dark background */
+.ti[dv="2"]   {background:linear-gradient(135deg,#1e0008,#320014);color:#ff8098;border-color:rgba(255,80,120,.25);text-shadow:0 0 8px rgba(255,80,120,.5)}
+.ti[dv="4"]   {background:linear-gradient(135deg,#260009,#3a0016);color:#ff5575;border-color:rgba(255,55,90,.3);box-shadow:0 0 8px rgba(255,55,90,.2);text-shadow:0 0 8px rgba(255,55,90,.6)}
+.ti[dv="8"]   {background:linear-gradient(135deg,#2c0004,#400008);color:#ff2a5c;border-color:rgba(255,30,70,.35);box-shadow:0 0 12px rgba(255,30,70,.25);text-shadow:0 0 10px rgba(255,30,70,.7)}
+.ti[dv="16"]  {background:linear-gradient(135deg,#320005,#480008);color:#ff1040;border-color:rgba(255,10,60,.4);box-shadow:0 0 15px rgba(255,10,60,.35);text-shadow:0 0 12px rgba(255,10,60,.8)}
+.ti[dv="32"]  {background:linear-gradient(135deg,#380007,#500010);color:#ff3560;border-color:rgba(255,50,90,.45);box-shadow:0 0 18px rgba(255,50,90,.4);text-shadow:0 0 12px rgba(255,50,90,.8)}
+.ti[dv="64"]  {background:linear-gradient(135deg,#400008,#600014);color:#ff6070;border-color:rgba(255,80,100,.5);box-shadow:0 0 22px rgba(255,80,100,.5);text-shadow:0 0 14px rgba(255,80,100,.9)}
+.ti[dv="128"] {background:linear-gradient(135deg,#440010,#660018);color:#ff80a0;border-color:rgba(255,100,140,.55);box-shadow:0 0 25px rgba(255,100,140,.55),0 0 40px rgba(255,23,68,.25);text-shadow:0 0 14px rgba(255,100,140,1)}
+.ti[dv="256"] {background:linear-gradient(135deg,#480015,#6a0022);color:#ffaabe;border-color:rgba(255,150,175,.6);box-shadow:0 0 28px rgba(255,150,175,.65),0 0 50px rgba(255,23,68,.35);text-shadow:0 0 16px rgba(255,150,175,1)}
+.ti[dv="512"] {background:linear-gradient(135deg,#4c0018,#720026);color:#ffccd8;border-color:rgba(255,190,210,.65);box-shadow:0 0 32px rgba(255,190,210,.7),0 0 55px rgba(255,23,68,.4);text-shadow:0 0 18px rgba(255,190,210,1)}
+.ti[dv="1024"]{background:linear-gradient(135deg,#520020,#7c002e);color:#ffe8f0;border-color:rgba(255,220,235,.7);box-shadow:0 0 36px rgba(255,220,235,.75),0 0 65px rgba(255,23,68,.55);text-shadow:0 0 20px rgba(255,220,235,1)}
+.ti[dv="2048"]{background:linear-gradient(135deg,#5e0028,#940040);color:#fff5f8;border-color:rgba(255,245,250,.8);animation:tile-win 1.5s ease-in-out infinite;box-shadow:0 0 40px rgba(255,23,68,1),0 0 80px rgba(255,23,68,.8);text-shadow:0 0 24px rgba(255,100,150,1),0 0 40px rgba(255,255,255,.5)}
+.ti[dv="big"] {background:linear-gradient(135deg,#6a0030,#a00048);color:#fff;border-color:rgba(255,255,255,.7);box-shadow:0 0 45px rgba(255,80,140,1),0 0 90px rgba(255,23,68,.9);text-shadow:0 0 24px rgba(255,255,255,1)}
 @keyframes tile-win{0%,100%{box-shadow:0 0 35px rgba(255,23,68,1),0 0 70px rgba(255,23,68,.7)}50%{box-shadow:0 0 55px rgba(255,23,68,1),0 0 110px rgba(255,23,68,.9),0 0 150px rgba(255,23,68,.4)}}
 
 /* ── VISUALIZER ──────────────────────────────────────────── */
@@ -692,7 +695,7 @@ button:disabled{opacity:.2;cursor:default}
 
   <div class="timer-wrap" id="timer-wrap"><div class="timer-bar" id="timer-bar"></div></div>
 
-  <div class="powerup-row">
+  <div class="powerup-row hidden" id="powerup-row">
     <span class="pu-lbl">PODER</span>
     <div class="pu-slots">
       <div class="pu-btn disabled" id="pu-bomb" onclick="activatePU('bomb')">
@@ -710,9 +713,11 @@ button:disabled{opacity:.2;cursor:default}
   <div class="ctrl">
     <button onclick="newGame()">↺ NUEVA</button>
     <button id="btn-undo" onclick="undoMove()" disabled>↩ DESHACER</button>
+    <button id="btn-ultra" class="btn-icon" onclick="toggleUltraMode()" title="Modo ULTRA: activa power-ups">⚡</button>
     <button id="btn-hard" class="btn-icon" onclick="toggleHard()">💀</button>
     <button id="btn-time" class="btn-icon" onclick="toggleTimeMode()">⏱</button>
     <button id="btn-music" class="btn-icon btn-music-on" onclick="toggleMusic()">🎵</button>
+    <button id="btn-track" class="btn-icon" onclick="nextTrack()" title="Cambiar track">🎚</button>
   </div>
 
   <div class="config-row">
@@ -753,7 +758,7 @@ button:disabled{opacity:.2;cursor:default}
     </div>
   </div>
 
-  <div class="hint">FLECHAS · WASD · DESLIZA · POWER-UPS CADA 15 MOVS</div>
+  <div class="hint" id="hint-bar">FLECHAS · WASD · DESLIZA · ⚡ ACTIVA MODO ULTRA PARA POWER-UPS</div>
 </div>
 
 <script>
@@ -777,13 +782,19 @@ function applyTheme(name){
   const el=document.getElementById('td-'+name);
   if(el)el.classList.add('active');
   try{localStorage.setItem('2048theme',name)}catch{}
+  // Fix: resume audio context if browser suspended it during DOM change
+  if(audioCtx&&audioCtx.state==='suspended'&&musicOn){
+    audioCtx.resume().then(()=>{
+      if(!musicStarted){musicStarted=true;nextBeatTime=audioCtx.currentTime+.05;runSeq();}
+    }).catch(()=>{});
+  }
 }
 
 /* ── STATE ───────────────────────────────────────────────── */
-let N=4,GAP=8,ANIM=120;
+let N=4,GAP=8,ANIM=80;
 let tiles=[],score=0,best=0,history=[],busy=false;
 let won=false,wonOff=false,ts=null,tid=0,CELL=0;
-let hardMode=false,musicOn=true;
+let hardMode=false,musicOn=true,ultraMode=false;
 let moveCount=0,maxTile=0,gameSeconds=0,gameTimerInt=null;
 let comboCount=0,lastMoveTime=0;
 let timeMode=false,timeModeSeconds=90,timeLeft=0;
@@ -930,17 +941,64 @@ function spawnP(x,y,n,colors){for(let i=0;i<n;i++)particles.push(new Particle(x,
 
 /* ── AUDIO ENGINE ─────────────────────────────────────────── */
 let audioCtx=null,masterGain=null,analyser=null,musicStarted=false,scheduleId=null;
-let nextBeatTime=0,beatStep=0,BPM=120;
+let nextBeatTime=0,beatStep=0,BPM=128;
+let currentTrack=0;
+const TRACK_NAMES=['SECTOR-1','SECTOR-2','SECTOR-3','SECTOR-4'];
 const STEPS=16;
-const kickPat =[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0];
-const hihatPat=[0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0];
-const bassN   =[55,55,55,55,55,55,55,55,65,65,65,65,65,65,65,65];
-const bassPat =[1,0,0,1,0,0,1,0,1,0,0,1,0,0,1,0];
+
+// SECTOR-1: Industrial Dark Techno (original mejorado)
+const T1={
+  kick :[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0],
+  hat  :[0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0],
+  bass :[1,0,0,1,0,0,1,0,1,0,0,1,0,0,1,0],
+  bassN:[55,55,55,55,55,55,55,55,65,65,65,65,65,65,65,65],
+  bpm  :128,hatType:'hihat'
+};
+// SECTOR-2: Acid Techno - 303 agresivo
+const T2={
+  kick :[1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,0],
+  hat  :[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1],
+  bass :[1,0,1,0,0,1,0,0,1,0,1,0,0,1,0,1],
+  bassN:[41,41,41,41,55,41,55,41,41,41,41,41,55,41,55,41],
+  bpm  :133,hatType:'open'
+};
+// SECTOR-3: Dark Ambient Techno - atmosphérico
+const T3={
+  kick :[1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
+  hat  :[0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1],
+  bass :[1,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0],
+  bassN:[36,36,36,36,36,36,43,36,36,36,36,36,43,36,36,36],
+  bpm  :110,hatType:'hihat'
+};
+// SECTOR-4: Hard Techno - rápido y duro
+const T4={
+  kick :[1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0],
+  hat  :[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
+  bass :[1,0,1,0,1,0,0,1,1,0,1,0,0,0,1,0],
+  bassN:[55,55,65,55,55,55,65,65,55,55,65,55,55,55,65,65],
+  bpm  :140,hatType:'closed'
+};
+const TRACKS=[T1,T2,T3,T4];
+
+function getTrack(){return TRACKS[currentTrack]}
+
+function nextTrack(){
+  currentTrack=(currentTrack+1)%TRACKS.length;
+  const name=TRACK_NAMES[currentTrack];
+  showFloatTxt('♪ '+name);
+  document.getElementById('btn-track').title='Track: '+name;
+  if(musicStarted){
+    // restart seq from current position with new track BPM
+    BPM=getTrack().bpm;
+    beatStep=0;nextBeatTime=audioCtx?audioCtx.currentTime+.05:0;
+  }
+  try{localStorage.setItem('2048track',currentTrack)}catch{}
+}
 
 function initAudio(){
   if(audioCtx)return;
   audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-  masterGain=audioCtx.createGain();masterGain.gain.value=.7;
+  masterGain=audioCtx.createGain();masterGain.gain.value=.72;
   analyser=audioCtx.createAnalyser();analyser.fftSize=64;
   masterGain.connect(analyser);analyser.connect(audioCtx.destination);
 }
@@ -953,51 +1011,69 @@ function mkReverb(){
 function schedKick(t){
   const o=audioCtx.createOscillator(),g=audioCtx.createGain();
   o.connect(g);g.connect(masterGain);
-  o.frequency.setValueAtTime(180,t);o.frequency.exponentialRampToValueAtTime(30,t+.12);
-  g.gain.setValueAtTime(.9,t);g.gain.exponentialRampToValueAtTime(.001,t+.2);
-  o.start(t);o.stop(t+.22);
+  o.frequency.setValueAtTime(160,t);o.frequency.exponentialRampToValueAtTime(28,t+.14);
+  g.gain.setValueAtTime(1.0,t);g.gain.exponentialRampToValueAtTime(.001,t+.22);
+  o.start(t);o.stop(t+.25);
+  // sub click
+  const n=audioCtx.createOscillator(),ng=audioCtx.createGain();
+  n.type='square';n.frequency.setValueAtTime(80,t);n.frequency.exponentialRampToValueAtTime(20,t+.03);
+  ng.gain.setValueAtTime(.3,t);ng.gain.exponentialRampToValueAtTime(.001,t+.04);
+  n.connect(ng);ng.connect(masterGain);n.start(t);n.stop(t+.05);
 }
-function schedHihat(t){
-  const bsz=audioCtx.sampleRate*.04,buf=audioCtx.createBuffer(1,bsz,audioCtx.sampleRate);
+function schedHihat(t,type){
+  const bsz=audioCtx.sampleRate*(type==='open'?.12:.04),buf=audioCtx.createBuffer(1,bsz,audioCtx.sampleRate);
   const d=buf.getChannelData(0);for(let i=0;i<bsz;i++)d[i]=Math.random()*2-1;
   const src=audioCtx.createBufferSource();src.buffer=buf;
-  const f=audioCtx.createBiquadFilter();f.type='highpass';f.frequency.value=8000;
-  const g=audioCtx.createGain();g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.001,t+.04);
-  src.connect(f);f.connect(g);g.connect(masterGain);src.start(t);src.stop(t+.05);
+  const f=audioCtx.createBiquadFilter();
+  f.type=type==='closed'?'bandpass':'highpass';
+  f.frequency.value=type==='open'?6000:9000;
+  f.Q.value=type==='closed'?3:1;
+  const decay=type==='open'?.1:.04;
+  const g=audioCtx.createGain();g.gain.setValueAtTime(type==='open'?.25:.2,t);g.gain.exponentialRampToValueAtTime(.001,t+decay);
+  src.connect(f);f.connect(g);g.connect(masterGain);src.start(t);src.stop(t+decay+.01);
 }
-function schedBass(t,note,s){
-  if(!bassPat[s])return;
+function schedBass(t,note,s,tk){
+  if(!tk.bass[s])return;
   const o=audioCtx.createOscillator(),o2=audioCtx.createOscillator();
   const g=audioCtx.createGain(),f=audioCtx.createBiquadFilter();
-  f.type='lowpass';f.frequency.value=600;f.Q.value=8;
+  f.type='lowpass';f.Q.value=currentTrack===1?14:8;
+  // Acid: sweep filter for 303 feel
+  if(currentTrack===1){
+    f.frequency.setValueAtTime(200,t);f.frequency.exponentialRampToValueAtTime(1400,t+.12);f.frequency.exponentialRampToValueAtTime(300,t+.25);
+  }else{f.frequency.value=700;}
   o.type='sawtooth';o.frequency.value=note;
-  o2.type='square';o2.frequency.value=note*1.5;
-  const g2=audioCtx.createGain();g2.gain.value=.3;
+  o2.type='square';o2.frequency.value=note*(currentTrack===1?1.003:1.5);
+  const g2=audioCtx.createGain();g2.gain.value=currentTrack===1?.5:.28;
   o.connect(f);o2.connect(g2);g2.connect(f);f.connect(g);g.connect(masterGain);
   const dur=60/BPM/4;
-  g.gain.setValueAtTime(.38,t);g.gain.exponentialRampToValueAtTime(.001,t+dur*.8);
+  const vol=currentTrack===3?.28:.4;
+  g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.001,t+dur*.85);
   o.start(t);o2.start(t);o.stop(t+dur);o2.stop(t+dur);
 }
 function schedPad(t){
-  const notes=[65,82,98,130],g=audioCtx.createGain(),rv=mkReverb();
+  const padNotes=currentTrack===2?[36,55,73]:currentTrack===1?[55,73,98,110]:[65,82,98,130];
+  const g=audioCtx.createGain(),rv=mkReverb();
   g.connect(rv);rv.connect(masterGain);
-  g.gain.setValueAtTime(.01,t);g.gain.linearRampToValueAtTime(.065,t+.5);g.gain.linearRampToValueAtTime(.01,t+2);
-  notes.forEach(n=>{
+  const vol=currentTrack===2?.1:.06;
+  g.gain.setValueAtTime(.01,t);g.gain.linearRampToValueAtTime(vol,t+.6);g.gain.linearRampToValueAtTime(.01,t+2.5);
+  padNotes.forEach(n=>{
     const o=audioCtx.createOscillator(),w=audioCtx.createOscillator(),wg=audioCtx.createGain();
-    o.type='sine';o.frequency.value=n;w.frequency.value=.3;wg.gain.value=2;
+    o.type=currentTrack===1?'sawtooth':'sine';
+    o.frequency.value=n;w.frequency.value=currentTrack===2?.6:.3;wg.gain.value=currentTrack===2?4:2;
     w.connect(wg);wg.connect(o.frequency);o.connect(g);
-    w.start(t);o.start(t);o.stop(t+2.5);w.stop(t+2.5);
+    w.start(t);o.start(t);o.stop(t+3);w.stop(t+3);
   });
 }
 function runSeq(){
   if(!audioCtx||audioCtx.state==='suspended')return;
+  const tk=getTrack();
   const sd=60/BPM/4;
-  while(nextBeatTime<audioCtx.currentTime+.1){
+  while(nextBeatTime<audioCtx.currentTime+.12){
     const s=beatStep%STEPS;
-    if(kickPat[s])schedKick(nextBeatTime);
-    if(hihatPat[s])schedHihat(nextBeatTime);
-    schedBass(nextBeatTime,bassN[s],s);
-    if(s===0||s===8)schedPad(nextBeatTime);
+    if(tk.kick[s])schedKick(nextBeatTime);
+    if(tk.hat[s])schedHihat(nextBeatTime,tk.hatType);
+    schedBass(nextBeatTime,tk.bassN[s],s,tk);
+    if(s===0||(s===8&&currentTrack!==3)||(s===4&&currentTrack===3))schedPad(nextBeatTime);
     beatStep++;nextBeatTime+=sd;
   }
   scheduleId=requestAnimationFrame(runSeq);
@@ -1006,6 +1082,7 @@ function startMusic(){
   if(!audioCtx)return;
   if(audioCtx.state==='suspended')audioCtx.resume();
   if(musicStarted)return;
+  BPM=getTrack().bpm;
   musicStarted=true;nextBeatTime=audioCtx.currentTime+.1;beatStep=0;runSeq();
 }
 function stopMusic(){if(scheduleId){cancelAnimationFrame(scheduleId);scheduleId=null}musicStarted=false;if(audioCtx)audioCtx.suspend()}
@@ -1018,13 +1095,14 @@ function toggleMusic(){
 
 /* ── ADAPTIVE BPM ────────────────────────────────────────── */
 function updateBPM(){
-  let b=120;
-  if(maxTile>=2048)b=160;
-  else if(maxTile>=1024)b=150;
-  else if(maxTile>=512)b=142;
-  else if(maxTile>=256)b=134;
-  else if(maxTile>=128)b=126;
-  BPM=b;
+  const base=getTrack().bpm;
+  let add=0;
+  if(maxTile>=2048)add=32;
+  else if(maxTile>=1024)add=22;
+  else if(maxTile>=512)add=14;
+  else if(maxTile>=256)add=6;
+  else if(maxTile>=128)add=2;
+  BPM=base+add;
 }
 
 /* ── SFX ─────────────────────────────────────────────────── */
@@ -1426,7 +1504,7 @@ function handleDir(dir){
     checkAch('combo3');
   }
 
-  if(moveCount>=nextPUAt){nextPUAt+=PU_EVERY;earnPU()}
+  if(ultraMode&&moveCount>=nextPUAt){nextPUAt+=PU_EVERY;earnPU()}
   if(score>best){best=score;try{localStorage.setItem('2048b'+N+(hardMode?'h':''),best)}catch{}}
   tiles.forEach(t=>{if(t.val>maxTile){maxTile=t.val;updateBPM();
     if(maxTile>=128)checkAch('reach_128');
@@ -1487,12 +1565,33 @@ function newGame(){
   document.getElementById('tl').classList.remove('bomb-mode');
   document.getElementById('g-ov')?.remove();document.getElementById('cd-ov')?.remove();
   stopGTimer();stopTimeCd();updateBPM();
+  // Show/hide powerup row based on ultraMode
+  document.getElementById('powerup-row').classList.toggle('hidden',!ultraMode);
   rebuildBoard();
   for(let i=0;i<2;i++){const t=spawnTile();if(t){t.isNew=false;tiles.push(t)}}
   calcCell();tiles.forEach(t=>mountTile(t));updateUI();
   document.getElementById('btn-undo').disabled=true;
   startGTimer();
   if(timeMode)showCountdown(()=>startTimeCd());
+}
+
+function toggleUltraMode(){
+  ultraMode=!ultraMode;
+  const b=document.getElementById('btn-ultra');
+  b.className=ultraMode?'btn-icon btn-ultra-on':'btn-icon';
+  document.getElementById('powerup-row').classList.toggle('hidden',!ultraMode);
+  const hint=document.getElementById('hint-bar');
+  hint.textContent=ultraMode
+    ?'MODO ULTRA · POWER-UPS CADA 15 MOVIMIENTOS · ⚡ PARA DESACTIVAR'
+    :'FLECHAS · WASD · DESLIZA · ⚡ ACTIVA MODO ULTRA PARA POWER-UPS';
+  if(!ultraMode){
+    // cancel any active power-up
+    activePU=null;
+    document.getElementById('tl').classList.remove('bomb-mode');
+    puStock={bomb:0,shuffle:0,freeze:0};
+    updatePUD();
+  }
+  newGame();
 }
 
 function undoMove(){
@@ -1582,6 +1681,8 @@ window.addEventListener('resize',()=>{
 (()=>{
   // Restore theme
   try{const th=localStorage.getItem('2048theme');if(th&&THEMES[th])applyTheme(th)}catch{}
+  // Restore track
+  try{const tr=parseInt(localStorage.getItem('2048track'));if(!isNaN(tr)&&tr>=0&&tr<4){currentTrack=tr;}document.getElementById('btn-track').title='Track: '+TRACK_NAMES[currentTrack];}catch{}
 
   // Restore size
   let sv=4;try{sv=parseInt(localStorage.getItem('2048sz'))||4}catch{}
